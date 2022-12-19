@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import * as cheerio from 'cheerio';
 import * as Uri from "uri-js";
+import CryptoJS from 'crypto-js'
 
 //2embed rabbitstream
 export async function rabbitstreamExtract(url: string) {

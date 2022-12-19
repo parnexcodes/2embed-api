@@ -37,7 +37,7 @@ export async function rabbitstreamExtract(url: string) {
         }
     }
 
-    let result = decryptSource(data.sources)
+    let result = await decryptSource(data.sources)
 
     let hls_url: string; for(const hls_source of data.sources) hls_url = hls_source.file;
 
@@ -46,7 +46,7 @@ export async function rabbitstreamExtract(url: string) {
     ));
     
     var source = {
-        hls_url: data.sources,
+        hls_url: result,
         tracks: hls_tracks
     };
 

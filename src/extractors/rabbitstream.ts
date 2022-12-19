@@ -18,6 +18,26 @@ export async function rabbitstreamExtract(url: string) {
         "X-Requested-With": "XMLHttpRequest" 
     } } ).then(res => res.data);
 
+    const decryptSource = async (encryptedSource) => {
+        // There are 2 keys possible, just try them all
+        try { // Dokicloud
+            let decryptionKey = (await axios.get('https://raw.githubusercontent.com/consumet/rapidclown/dokicloud/key.txt')).data
+            let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
+            return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+        } catch(e) {
+            console.log("Dokicloud key failed to decrypt source")
+        }
+        try { // Rabbitstream
+            let decryptionKey = (await axios.get('https://raw.githubusercontent.com/consumet/rapidclown/rabbitstream/key.txt')).data
+            let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
+            return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+        } catch (e) {
+            console.log("Rabbitstream key failed to decrypt source")
+        }
+    }
+
+    let result = decryptSource(data.sources)
+
     let hls_url: string; for(const hls_source of data.sources) hls_url = hls_source.file;
 
     let hls_tracks = data.tracks.map((track: any) => (
@@ -25,11 +45,11 @@ export async function rabbitstreamExtract(url: string) {
     ));
     
     var source = {
-        hls_url: data,
+        hls_url: result,
         tracks: hls_tracks
     };
 
-    return {data};
+    return {source};
 
  } 
 

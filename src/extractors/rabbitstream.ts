@@ -15,7 +15,7 @@ export async function rabbitstreamExtract(url: string) {
     const data_id = $('#vidcloud-player').attr('data-id');
     const ajax_url = uri.scheme + "://" + uri.host + '/ajax/embed-5/getSources?id=' + data_id;
 
-    const data = await axios.get(ajax_url, { headers: { 
+    let data = await axios.get(ajax_url, { headers: { 
         "X-Requested-With": "XMLHttpRequest" 
     } } ).then(res => res.data);
 
@@ -37,7 +37,7 @@ export async function rabbitstreamExtract(url: string) {
         }
     }
 
-    let result = await decryptSource(data.sources)
+    data.sources = await decryptSource(data.sources)
 
     let hls_url: string; for(const hls_source of data.sources) hls_url = hls_source.file;
 
@@ -45,10 +45,10 @@ export async function rabbitstreamExtract(url: string) {
         {url: track.file, label: track.label}
     ));
     
-    var source = {
-        hls_url: result,
-        tracks: hls_tracks
-    };
+    // var source = {
+    //     hls_url: result,
+    //     tracks: hls_tracks
+    // };
 
     return {data};
 

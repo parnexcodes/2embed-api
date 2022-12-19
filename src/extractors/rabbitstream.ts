@@ -29,7 +29,7 @@ export async function rabbitstreamExtract(url: string) {
         tracks: hls_tracks
     };
 
-    return {source};
+    return {data};
 
  } 
 

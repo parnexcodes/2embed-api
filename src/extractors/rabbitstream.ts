@@ -46,7 +46,7 @@ export async function rabbitstreamExtract(url: string) {
     ));
     
     var source = {
-        hls_url: result,
+        hls_url: data.sources,
         tracks: hls_tracks
     };
 

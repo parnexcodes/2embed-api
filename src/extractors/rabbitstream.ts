@@ -12,7 +12,7 @@ export async function rabbitstreamExtract(url: string) {
 
     const $ = cheerio.load(initial_page);
     const data_id = $('#vidcloud-player').attr('data-id');
-    const ajax_url = uri.scheme + "://" + uri.host + '/ajax/embed-4/getSources?id=' + data_id;
+    const ajax_url = uri.scheme + "://" + uri.host + '/ajax/embed-5/getSources?id=' + data_id;
 
     const data = await axios.get(ajax_url, { headers: { 
         "X-Requested-With": "XMLHttpRequest" 
@@ -25,7 +25,7 @@ export async function rabbitstreamExtract(url: string) {
     ));
     
     var source = {
-        hls_url: hls_url,
+        hls_url: data,
         tracks: hls_tracks
     };
 

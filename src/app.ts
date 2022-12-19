@@ -9,7 +9,7 @@ class App {
 
   constructor() {
      this.app = express();
-     this.app.use(cors({ origin: true })));
+     this.app.use(cors({ origin: true }));
      this.routes();
   }
 

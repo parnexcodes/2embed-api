@@ -1,8 +1,78 @@
-# node-express-vercel
-Hosting express node project on vercel
 
-### Video
-> https://youtu.be/vCuf62T2snY
+# 2embed-api
 
-### Deployed on
-> https://node-express-vercel-rose.vercel.app/home
+Get HLS streams and info from 2embed.to
+
+
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/parnexcodes/2embed-api
+```
+
+Go to the project directory
+
+```bash
+  cd 2embed-api
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  cd src
+  npm dev
+```
+
+
+## API Reference
+
+#### Get tmdb details
+
+```http
+  GET /api/details/:type/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `type` | `string` | movie/tv |
+| `id` | `string` | tmdb id |
+
+#### Get Episodes
+
+```http
+  GET /api/episodes/tv/:id/seasons/:season_n_query
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | tmdb id |
+| `season_n_query`      | `string` | season number |
+
+#### Get HLS Stream
+
+```http
+  GET /api/get_source/:type?id=${id}&s=${season_num}&e=${ep_num}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `type`      | `string` | movie/tv |
+| `id`      | `string` | tmdb id |
+| `s`      | `string` | **Only for TV** : season number |
+| `e`      | `string` | **Only for TV** : episode number |
+
+
+## Authors
+
+- [@parnexcodes](https://www.github.com/parnexcodes)
+

@@ -38,7 +38,7 @@ Start the server
 
 #### Get tmdb details
 
-```http
+```
   GET /api/details/:type/:id
 ```
 
@@ -49,7 +49,7 @@ Start the server
 
 #### Get Episodes
 
-```http
+```
   GET /api/episodes/tv/:id/seasons/:season_n_query
 ```
 
@@ -60,7 +60,7 @@ Start the server
 
 #### Get HLS Stream
 
-```http
+```
   GET /api/get_source/:type?id=${id}&s=${season_num}&e=${ep_num}
 ```
 

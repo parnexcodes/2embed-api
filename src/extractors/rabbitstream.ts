@@ -29,7 +29,7 @@ export async function rabbitstreamExtract(url: string) {
             console.log("Dokicloud key failed to decrypt source")
         }
         try { // Rabbitstream
-            let decryptionKey = (await axios.get('https://raw.githubusercontent.com/consumet/rapidclown/rabbitstream/key.txt')).data
+            let decryptionKey = (await axios.get('https://raw.githubusercontent.com/enimax-anime/key/e6/key.txt')).data
             let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
             return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
         } catch (e) {

@@ -1,5 +1,5 @@
 {
-  "name": "flicklax_api",
+  "name": "2embed-api",
   "version": "1.0.0",
   "description": "api",
   "main": "dist/server.js",

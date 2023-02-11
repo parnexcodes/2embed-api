@@ -74,5 +74,5 @@ Start the server
 
 ## Authors
 
-- [@parnexcodes](https://www.github.com/parnexcodes)
-
+- [@ernestdodz](https://www.github.com/ernestdodz) (Originally made by @ernestdodz)
+- [@parnexcodes](https://www.github.com/parnexcodes) (fixed it to work without rabbitstream token)

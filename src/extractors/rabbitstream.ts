@@ -19,25 +19,17 @@ export async function rabbitstreamExtract(url: string) {
         "X-Requested-With": "XMLHttpRequest" 
     } } ).then(res => res.data);
 
-    // const decryptSource = async (encryptedSource) => {
-    //     // There are 2 keys possible, just try them all
-    //     try { // Dokicloud
-    //         let decryptionKey = (await axios.get('https://raw.githubusercontent.com/consumet/rapidclown/dokicloud/key.txt')).data
-    //         let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
-    //         return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
-    //     } catch(e) {
-    //         console.log("Dokicloud key failed to decrypt source")
-    //     }
-    //     try { // Rabbitstream
-    //         let decryptionKey = (await axios.get('https://raw.githubusercontent.com/enimax-anime/key/e6/key.txt')).data
-    //         let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
-    //         return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
-    //     } catch (e) {
-    //         console.log("Rabbitstream key failed to decrypt source")
-    //     }
-    // }
+    const decryptSource = async (encryptedSource) => {
+        try { // Rabbitstream
+            let decryptionKey = (await axios.get('https://raw.githubusercontent.com/enimax-anime/key/e4/key.txt')).data
+            let bytes = CryptoJS.AES.decrypt(encryptedSource, decryptionKey);
+            return (JSON.parse(bytes.toString(CryptoJS.enc.Utf8)));
+        } catch (e) {
+            console.log("Rabbitstream key failed to decrypt source")
+        }
+    }
 
-    // data.sources = await decryptSource(data.sources)
+    data.sources = await decryptSource(data.sources)
 
     // let hls_url: string; for(const hls_source of data.sources) hls_url = hls_source.file;
 
